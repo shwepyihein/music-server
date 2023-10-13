@@ -13,7 +13,7 @@ export class UploadController {
     return this.uploadService.generateSignedUrl(data);
   }
 
-  @Post('/images/delete')
+  @Post('file/delete')
   async deleteFile(@Body() body: FileDeleteDto) {
     const { file_path } = body;
     await this.uploadService.deleteFile(file_path);

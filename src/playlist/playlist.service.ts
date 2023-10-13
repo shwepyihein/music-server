@@ -22,7 +22,7 @@ export class PlaylistService {
     orderData.order[`${'id'}`] = orderAsc;
     return from(
       this.playListRepo.findAndCount({
-        select: ['id', 'name'],
+        select: ['id', 'name', 'created_at', 'deleted_at', 'updated_at'],
         skip: skip,
         take: limit,
         ...orderData,

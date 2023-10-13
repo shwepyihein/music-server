@@ -28,6 +28,11 @@ export class AuthorController {
     return this.authorService.getAuthorList(page, limit, order);
   }
 
+  @Get('all')
+  getAllAuthor() {
+    return this.authorService.getAllAuthor();
+  }
+
   @Get(':id')
   OrderDetailById(@Param('id', ParseIntPipe) id: number) {
     return this.authorService.getAuthorById(id);

@@ -1,10 +1,13 @@
 import { AudioEntity } from 'src/audio/model/audio.entity';
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   Generated,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('author')
@@ -27,4 +30,13 @@ export class AuthorEntity {
     onUpdate: 'CASCADE',
   })
   audio: AudioEntity[];
+
+  @CreateDateColumn()
+  created_at?: Date;
+
+  @UpdateDateColumn()
+  updated_at?: Date;
+
+  @DeleteDateColumn({ nullable: true })
+  deleted_at?: Date;
 }

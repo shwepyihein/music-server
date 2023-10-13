@@ -5,9 +5,6 @@ export class createAudioDto {
   title: string;
 
   @ApiProperty()
-  album: string;
-
-  @ApiProperty()
   file_path: string;
 
   @ApiProperty()

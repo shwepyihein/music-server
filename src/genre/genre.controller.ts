@@ -1,16 +1,18 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import { ApiQuery, ApiTags } from '@nestjs/swagger';
 
 import { GenreService } from './genre.service';
-import { createGenreDto } from './model/genre.dto.';
+import { UpdateGenreDto, createGenreDto } from './model/genre.dto.';
 import { SortByType } from './model/genre.enum';
 
 @Controller('genre')
@@ -32,9 +34,27 @@ export class GenreController {
     return this.genreService.getGenreList(page, limit, order_by, order);
   }
 
+  @Get('all')
+  getAllGenre() {
+    return this.genreService.getAllGenre();
+  }
+
   @Get(':id')
-  OrderDetailById(@Param('id', ParseIntPipe) id: number) {
+  greneDetailById(@Param('id', ParseIntPipe) id: number) {
     return this.genreService.getGenreById(id);
+  }
+
+  @Delete(':id')
+  gerneDelete(@Param('id', ParseIntPipe) id: number) {
+    return this.genreService.deleteGenreWithCascade(id);
+  }
+
+  @Put('update/:id')
+  updateGreneDetail(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: UpdateGenreDto,
+  ) {
+    return this.genreService.UpdateGenreById(id, data);
   }
 
   @Post()

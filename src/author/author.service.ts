@@ -18,7 +18,15 @@ export class AuthorService {
     orderData.order[`${'id'}`] = orderAsc;
     return from(
       this.authorRepo.findAndCount({
-        select: ['id', 'name'],
+        select: [
+          'id',
+          'name',
+          'created_at',
+          'deleted_at',
+          'updated_at',
+          'decription',
+          'degree',
+        ],
         skip: skip,
         take: limit,
         ...orderData,
@@ -31,6 +39,16 @@ export class AuthorService {
         return { data, total_page: Math.round(count / limit) };
       }),
     );
+  }
+
+  async getAllAuthor() {
+    const res = await this.authorRepo.find({
+      select: ['id', 'name'],
+      order: {
+        created_at: 'DESC',
+      },
+    });
+    return res;
   }
 
   async getAuthorById(id: number) {

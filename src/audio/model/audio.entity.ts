@@ -23,7 +23,7 @@ export class AudioEntity {
   @Column()
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   album: string;
 
   @Column()
@@ -32,8 +32,8 @@ export class AudioEntity {
   @Column()
   image_path: string;
 
-  @Column()
-  duration: string;
+  @Column({ nullable: true })
+  duration: number;
 
   @Column()
   year: string;
