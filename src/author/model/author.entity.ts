@@ -22,8 +22,11 @@ export class AuthorEntity {
   @Column()
   degree: string;
 
+  @Column({ nullable: true })
+  author_image: string;
+
   @Column()
-  decription: string;
+  description: string;
 
   @OneToMany((type) => AudioEntity, (AudioEntity) => AudioEntity.author_id, {
     onDelete: 'CASCADE',

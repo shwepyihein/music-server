@@ -1,10 +1,12 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   ParseIntPipe,
   Post,
+  Put,
   Query,
 } from '@nestjs/common';
 import { ApiQuery, ApiTags } from '@nestjs/swagger';
@@ -41,5 +43,18 @@ export class AuthorController {
   @Post()
   async createGenre(@Body() data: createAuthorDto) {
     return await this.authorService.creatAuthor(data);
+  }
+
+  @Delete(':id')
+  gerneDelete(@Param('id', ParseIntPipe) id: number) {
+    return this.authorService.deleteGenreWithCascade(id);
+  }
+
+  @Put('update/:id')
+  updateAuthroDetail(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() data: createAuthorDto,
+  ) {
+    return this.authorService.UpdateAuthorById(id, data);
   }
 }

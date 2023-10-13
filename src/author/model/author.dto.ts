@@ -8,5 +8,8 @@ export class createAuthorDto {
   degree: string;
 
   @ApiProperty()
-  decription: string;
+  description: string;
+
+  @ApiProperty()
+  author_image: string;
 }

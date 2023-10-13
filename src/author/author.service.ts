@@ -24,7 +24,7 @@ export class AuthorService {
           'created_at',
           'deleted_at',
           'updated_at',
-          'decription',
+          'description',
           'degree',
         ],
         skip: skip,
@@ -43,7 +43,7 @@ export class AuthorService {
 
   async getAllAuthor() {
     const res = await this.authorRepo.find({
-      select: ['id', 'name'],
+      select: ['id', 'name', 'degree', 'author_image', 'description'],
       order: {
         created_at: 'DESC',
       },
@@ -69,6 +69,40 @@ export class AuthorService {
       return { success: true };
     } catch (error) {
       throw new BadRequestException();
+    }
+  }
+
+  async UpdateAuthorById(id: number, data: any) {
+    try {
+      const gerne = await this.authorRepo.findOne({ where: { id: id } });
+      if (!gerne) {
+        return new BadRequestException({ message: 'Gerne not Found' });
+      }
+      await this.authorRepo.save({ ...gerne, ...data });
+      return { success: true };
+    } catch (error) {
+      return new BadRequestException({ success: false });
+    }
+  }
+
+  async deleteGenreWithCascade(id: number) {
+    try {
+      const author = await this.authorRepo.findOne({
+        where: { id: id },
+      });
+
+      if (author) {
+        // Delete related AudioToGenreEntity records first
+
+        // Now delete the GenreEntity
+        await this.authorRepo.remove(author);
+        return { success: true };
+      } else {
+        return new BadRequestException({ message: 'Gerne not Found' });
+      }
+    } catch (error) {
+      console.error('Error deleting genre and related records:', error);
+      return new BadRequestException({ message: error });
     }
   }
 }
