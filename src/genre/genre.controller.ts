@@ -15,8 +15,8 @@ import { GenreService } from './genre.service';
 import { UpdateGenreDto, createGenreDto } from './model/genre.dto.';
 import { SortByType } from './model/genre.enum';
 
-@Controller('genre')
-@ApiTags('genre')
+@Controller('gerne')
+@ApiTags('gerne')
 export class GenreController {
   constructor(private readonly genreService: GenreService) {}
 
