@@ -5,5 +5,13 @@ export class createPlayListDto {
   name: string;
 
   @ApiProperty()
-  playList: string[];
+  playList: number[];
+}
+
+export class UpdatePlayListDto {
+  @ApiProperty()
+  name: string;
+
+  @ApiProperty()
+  audioIds: number[];
 }

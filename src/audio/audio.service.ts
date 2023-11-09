@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { from, map } from 'rxjs';
 import { AudioToGenreEntity, GenreEntity } from 'src/genre/model/genre.entity';
 import { Repository } from 'typeorm';
+import { createAudioDto } from './model/audio.dto.';
 import { AudioEntity } from './model/audio.entity';
 
 @Injectable()
@@ -78,8 +79,11 @@ export class AudioService {
     }
   }
 
-  async CreateAudio(data) {
+  async CreateAudio(data: createAudioDto) {
     const genreRooms = [];
+    console.log(data);
+    const newData = data;
+    newData.duration = data.duration;
     const saveAudio = await this.audioRepo.save(data);
     for (const id of data.genre_list) {
       const oldGenre = await this.GenreRepo.findOne({

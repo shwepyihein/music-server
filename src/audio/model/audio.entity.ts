@@ -20,7 +20,7 @@ export class AudioEntity {
   @Generated('increment')
   id: number;
 
-  @Column()
+  @Column({})
   title: string;
 
   @Column({ nullable: true })
@@ -32,8 +32,10 @@ export class AudioEntity {
   @Column()
   image_path: string;
 
-  @Column({ nullable: true })
-  duration: number;
+  @Column({
+    type: 'text',
+  })
+  duration: number | string;
 
   @Column()
   year: string;

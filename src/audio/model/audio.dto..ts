@@ -11,7 +11,7 @@ export class createAudioDto {
   image_path: string;
 
   @ApiProperty()
-  duration: string;
+  duration: number;
 
   @ApiProperty()
   year: string;
