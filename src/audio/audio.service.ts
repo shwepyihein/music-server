@@ -37,6 +37,7 @@ export class AudioService {
           'image_path',
           'duration',
           'year',
+          'file_path',
         ],
         relations: ['author_id', 'genre_to_audio', 'genre_to_audio.genres'],
         skip: skip,
