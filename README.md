@@ -32,14 +32,14 @@
 $ yarn install
 ```
 
-## Running the app
+## Deployment
 
 ```bash
 # development
-$ yarn run start
+$ vercel login
 
 # watch mode
-$ yarn run start:dev
+$ vercel --prod
 
 # production mode
 $ yarn run start:prod
@@ -71,4 +71,5 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
 # music-server
