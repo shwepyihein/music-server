@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AudioModule } from './audio/audio.module';
@@ -8,8 +10,6 @@ import { AuthorModule } from './author/author.module';
 import { GenreModule } from './genre/genre.module';
 import { PlaylistModule } from './playlist/playlist.module';
 import { UploadModule } from './upload/upload.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
